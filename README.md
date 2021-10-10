@@ -909,5 +909,5 @@ The long answer:
  questions (and actually answering most of them) and for letting me
  bounce ideas off him.
 
-$Id: README,v 1.2 2003/09/12 21:23:39 lorgor Exp $
+$Id: README,v 3.2 2021/10/10 10:23:39 lorgor Exp $
 
