@@ -1,0 +1,69 @@
+<set id="1">
+    <set_description>web-server</set_description>>
+    <port id="1">
+        <num>20</num>
+        <description>ftp-data</description>
+    </port>
+    <port id="2">
+        <num>22</num>
+        <description>SSH</description>
+    </port>
+    <port id="3">
+        <num>25</num>
+        <description>smtp</description>
+    </port>
+    <port id="4">
+        <num>8000</num>
+        <description>web</description>
+    </port>
+    <port id="5">
+        <num>80</num>
+        <description>http</description>
+    </port>
+</set>
+<set id="2">
+    <set_description>ARM</set_description>>
+    <port id="1">
+        <num>7</num>
+        <description>echo</description>
+    </port>
+    <port id="2">
+        <num>22</num>
+        <description>SSH</description>
+    </port>
+    <port id="3">
+        <num>23</num>
+        <description>telnet</description>
+    </port>
+    <port id="4">
+        <num>3389</num>
+        <description>RDP</description>
+    </port>
+    <port id="5">
+        <num>110</num>
+        <description>pop3</description>
+    </port>
+</set>
+<set id="3">
+    <set_description>sql-server</set_description>>
+    <port id="1">
+        <num>22</num>
+        <description>SSH</description>
+    </port>
+    <port id="2">
+        <num>23</num>
+        <description>telnet</description>
+    </port>
+    <port id="3">
+        <num>-700349552</num>
+        <description>MS-sql</description>
+    </port>
+    <port id="4">
+        <num>3306</num>
+        <description>mysql</description>
+    </port>
+    <port id="5">
+        <num>21</num>
+        <description>ftp</description>
+    </port>
+</set>

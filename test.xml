@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+  <Set id="1" description="web-server">
+    <port id="1" num="20" description="ftp-data">20</port>
+    <port id="2" num="22" description="SSH">22</port>
+    <port id="3" num="25" description="smtp">25</port>
+    <port id="4" num="8000" description="web">8000</port>
+    <port id="5" num="80" description="http">80</port>
+    <port id="6" num="7" description="echo">7</port>
+    <port id="7" num="23" description="telnet">23</port>
+    <port id="8" num="3389" description="RDP">3389</port>
+    <port id="9" num="110" description="pop3">110</port>
+  </Set>
+  
