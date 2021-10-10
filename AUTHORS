@@ -1,12 +1,12 @@
 AUTHORS / CREDITS
 
-Tom Liston <tliston@premmag.com> is the father of LaBrea.
+Tom Liston <johnshefer.private@gmail.com> is the father of NetHole.
 
-This version was based on LaBrea 2.4 beta 3 source. Loren Gordon
-<loren.gordon@teleglobe.ca> was a major contributor.
+This version was based on NetHole 2.4 beta 3 source. John Shefer
+<johnshefer.private@gmail.com> was a major contributor.
 
 Dug Song wrote the libdnet and fragroute packages. This code is
-copyright Dug Song <dugsong@monkey.org>. See the DSong-license for
+copyright Dug Song <johnshefer.private@gmail.com>. See the DSong-license for
 details. Parts of fragroute (pkt, pcaputil, bget, strlcpy) were used
 in this code.
 
@@ -23,4 +23,4 @@ help in putting together the Trinux package.  Thanks also to Anders
 Reed Mohn for his suggestions.
 
 
-## $Id: AUTHORS,v 1.1 2003/01/09 18:13:19 lorgor Exp $
+## $Id: AUTHORS,v 1.1 2021/10/10 10:13:19 john Exp $
