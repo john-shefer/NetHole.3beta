@@ -1,0 +1,39 @@
+
+
+Hey, guys.
+I have an app, which basically runs in terminal mode, but it can open it's GUI part in another thread (Simple window with a GtkTextView to print some messages out).
+I need to manually update the contents of this `GtkTextView` when some event happens in main thread. For that purpose I created a signal which should pass a pointer to char array with message to print
+
+Creating new signal:
+'g_signal_new("new-message-received",
+              G_TYPE_OBJECT, G_SIGNAL_RUN_FIRST,
+              0, NULL, NULL,
+              g_cclosure_marshal_VOID__POINTER,
+              G_TYPE_NONE, 1, G_TYPE_POINTER); '
+
+Connecting it with handler function:
+'g_signal_connect(G_OBJECT(demo_window), "new-message-received", 
+	                        G_CALLBACK(print_demo_message), (gpointer)msg);'
+
+And emitting signal:
+'g_signal_emit_by_name(G_OBJECT(demo_window), "new-message-received", (gpointer) msg);'
+
+The problem is that signal handler gets some broken pointer (I try to print it to stdout -- it's always some random 4 symbols) instead of passed message.
+The handler is:
+'void print_demo_message(gpointer *param)
+{
+	const gchar* message = (const gchar*)param;
+	g_print("Got message: %s\n", message);
+	...
+}'
+The output is 'Got message: p���'
+
+What I tried:
+1. Making 'msg' a global variable to avoid re-initialization -- no result
+2. Using a generic marshaller in signal creating -- no result
+3. Passing a link to 'msg' address instead of a pointer to it, no result too. 
+The question is -- what am I doing wrong? 
+
+Thanks in advance.
+
+

@@ -1,0 +1,25 @@
+Fri May 11 13:00:33 2018  User specified capture subnet / mask: 172.16.254.0/24
+Fri May 11 13:00:33 2018  LaBrea will attempt to capture unused IPs.
+Fri May 11 13:00:33 2018  Full internal BPF filter: arp or ip
+Fri May 11 13:00:33 2018  LaBrea will log to stdout
+Fri May 11 13:00:33 2018  Logging will be verbose.
+Fri May 11 13:00:33 2018  IPs will be "hard captured".
+Fri May 11 13:00:33 2018  Non-excluded addresses will be automatically marked as being hard captured
+Fri May 11 13:00:33 2018  Initiated on interface: vmnet1
+Fri May 11 13:00:33 2018  Host system IP addr: 172.16.254.1, MAC addr: 00:50:56:c0:00:01
+Fri May 11 13:00:33 2018  ...Processing configuration file
+Fri May 11 13:00:33 2018  ... End of configuration file processing
+
+Fri May 11 13:00:33 2018  Network number: 172.16.254.0
+Fri May 11 13:00:33 2018  Netmask: 255.255.255.0
+Fri May 11 13:00:33 2018  Number of addresses LaBrea will watch for ARPs: 255
+Fri May 11 13:00:33 2018  Range: 172.16.254.0 - 172.16.254.255
+Fri May 11 13:00:33 2018  Throttle size set to WIN 10
+Fri May 11 13:00:33 2018  Rate (-r) set to 3
+Fri May 11 13:00:33 2018  Labrea started
+Fri May 11 13:00:52 2018  Capturing local IP 172.16.254.100
+Fri May 11 13:00:52 2018  Initial Connect - tarpitting: 172.16.254.10 45252 -> 172.16.254.100 22 *
+This should be in the demo window: 
+Initial connect - tarpitting addr 172.16.254.10
+Got message: Initial connect - tarpitting addr 172.16.254.10
+**Demo window isn't initialized yet!**
