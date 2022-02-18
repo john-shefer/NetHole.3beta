@@ -197,14 +197,14 @@ The long answer:
 --switch-safe (-s)		  : "Safe" operation in a 
 				    switched environment
 
-      Under a switched environment it is possible for LaBrea to see an
-      ARP request, but not see the resulting ARP reply.  LaBrea can
+      Under a switched environment it is possible for NetHole to see an
+      ARP request, but not see the resulting ARP reply.  NetHole can
       still work under these conditions by sending out "mirror" ARP
       requests of its own.
 
-      If this parameter is specified, when LaBrea sees an inbound ARP
+      If this parameter is specified, when NetHole sees an inbound ARP
       request the pgm sends out a duplicate ARP request for the same
-      IP, with the LaBrea server itself as the target for the reply.
+      IP, with the NetHole server itself as the target for the reply.
 
 
 --exclude-resolvable-ips (-X)	   : Automatically exclude resolvable
@@ -216,12 +216,12 @@ The long answer:
 
 --disable-capture (-x)		   : Disable IP capture
   
-      This instructs LaBrea NOT to capture IPs.
+      This instructs NetHole NOT to capture IPs.
 
 
 --hard-capture (-h)		   : "Hard" capture IPs
 
-      The -h option instructs LaBrea that once it captures an IP
+      The -h option instructs NetHole that once it captures an IP
       address, it needn't wait for a "-r" timeout the next time it
       sees an Arp request for this IP.  IPs are "hard" captured.
 
@@ -240,10 +240,10 @@ The long answer:
       etc.
   
 
-      After I changed some stuff in LaBrea, I thought I would be
-      tricky and restart LaBrea quickly so I could keep hold of the
+      After I changed some stuff in NetHole, I thought I would be
+      tricky and restart NetHole quickly so I could keep hold of the
       connections I had already trapped.  And lo, one of the dogs of
-      the internet chose that moment to hit me with a scan.  LaBrea
+      the internet chose that moment to hit me with a scan.  NetHole
       didn't have enough information for correctly calculating
       bandwidth yet, so I ended up with *WAY* too many connections.
       
@@ -264,7 +264,7 @@ The long answer:
 --max-rate (-p) maxrate		    : "Persist" state capture
 				      connect attempts
 
-      LaBrea will permanently capture connect attempts within the
+      NetHole will permanently capture connect attempts within the
       limit of the maximum data rate specified (in Kbits/sec).
 
       This value is expressed in KiloBytes/Sec. (This is a change from
@@ -277,15 +277,15 @@ The long answer:
       First of all, this forces data throttling to 3 bytes (see the
       "-t" option above).
    
-      Then, when a connection is attempted, LaBrea will force the
+      Then, when a connection is attempted, NetHole will force the
       connection into what is known as "persist" state.  In persist
       state, the connection NEVER times out.  You'll literally hang
       onto the scanning thread until you stop or they stop.
 
       Running unchecked, this could have a detrimental effect on your
-      bandwidth, so LaBrea will make every effort to limit itself to
+      bandwidth, so NetHole will make every effort to limit itself to
       the maximum bandwidth that you specify (in Kb/sec).  If it
-      can't capture a connection, LaBrea will still tarpit it.  Note:
+      can't capture a connection, NetHole will still tarpit it.  Note:
       It'll stay pretty NEAR your MAXBW number... YMMV.
 
 --log-bandwidth (-b)		      : Log bandwidth usage to syslog
@@ -312,7 +312,7 @@ The long answer:
 --no-resp-synack (-a)		      : Do not respond to SYN/ACKs
 					and PINGs
 
-      By default, LaBrea's "virtual machines" will respond to a
+      By default, NetHole's "virtual machines" will respond to a
       SYN/ACK packet with a RST.
 
       This is nice behavior, because it makes it difficult for people
@@ -329,12 +329,12 @@ The long answer:
       option, excluded ports will act as if they were firewalled to
       DROP inbound connections.
 
-      The result is that nmap scans of LaBrea virtual machines in the
+      The result is that nmap scans of NetHole virtual machines in the
       capture subnet will take a long time. This discourages hacking
       activity while at the same time generating log entries that warn
       you of the activity.
 
-      LaBrea is automatically configured to always respond to the
+      NetHole is automatically configured to always respond to the
       "usual" hacking ports.
       
       Also, if there is enough activity on some other port, then the
@@ -345,7 +345,7 @@ The long answer:
 
       Before giving the detailed explanation, first some definitions:
 
-      a) A standard port is one that LaBrea always responds to. These
+      a) A standard port is one that NetHole always responds to. These
       ports are the ones that hackers and worms look for (e.g. telnet,
       http, ftp, etc). See ctl.c for the complete list.
 
@@ -357,17 +357,17 @@ The long answer:
 
       ----------------------------
 
-      When "-f" is specified, LaBrea behaves as follows:
+      When "-f" is specified, NetHole behaves as follows:
 
       1) Excluded ports will do not respond at all (DROP).  
 
       2) Activity on a standard port will be handled as
       usual (i.e. tarpitting, persist mode)
 
-      3) If LaBrea sees activity on a dynamic port, then it starts
+      3) If NetHole sees activity on a dynamic port, then it starts
       counting the number of SYNs received (ie incoming
       connections). When there is enough activity on the port, then
-      LaBrea will start responding to incoming connects:
+      NetHole will start responding to incoming connects:
       
 	a) If SYN count is less than 6, then drop the incoming
            connection, but increment the counter by 1.
@@ -383,17 +383,17 @@ The long answer:
 --no-arp-sweep			 : Don't perform initial arp sweep of
 				   capture subnet
 
-      LaBrea has a number of safety mechanisms built-in to avoid
+      NetHole has a number of safety mechanisms built-in to avoid
       causing problems with its virtual machines.
 
-      By default, LaBrea will do an arp sweep of the capture subnet in
+      By default, NetHole will do an arp sweep of the capture subnet in
       order to detect IPs that are already occupied by active
       machines.  Arps are generated in bursts of 85 at 2 minute
       intervals. However if the capture subnet is too large (>1024
       addresses), then a warning message is given, and the arp sweep
       is turned off.
 
-      Specifying this parameter means that LaBrea will not do the
+      Specifying this parameter means that NetHole will not do the
       initial arp sweep.
 
 
@@ -420,8 +420,8 @@ The long answer:
       This option also implies and sets the -d option (Do NOT detach
       process).
 
-      Yes, I know... LaBrea is chatty and dumps a whole lot of stuff
-      into syslog.  This gives you the option to have LaBrea log
+      Yes, I know... NetHole is chatty and dumps a whole lot of stuff
+      into syslog.  This gives you the option to have NetHole log
       information go to stdout instead.
 
       "-o" is the default behaviour on Windows systems.
@@ -443,7 +443,7 @@ The long answer:
 ---------------------------------
 
 ==> Note that on Windows systems, messages are sent by default to
-    stdout. Also LaBrea is not yet able to detach itself and run as a
+    stdout. Also NetHole is not yet able to detach itself and run as a
     standalone Windows service. 
 
 ==> The following parameters are specific to Windows systems only:
@@ -451,7 +451,7 @@ The long answer:
 
 --list-interfaces (-D)		 : List available interfaces
 
-      LaBrea uses two different APIs to interact with the NIC (network
+      NetHole uses two different APIs to interact with the NIC (network
       card): libdnet and WinPcap. The libdnet intf API is used to
       extract information from the NIC and to generate packets. The
       WinPcap API is used to sniff.
@@ -459,7 +459,7 @@ The long answer:
       Unfortunately, these two APIs have different nomenclatures for
       the same underlying NIC.
 
-      Specifying this parameter causes LaBrea to generate the list of
+      Specifying this parameter causes NetHole to generate the list of
       available interfaces. Both the WinPcap and the libdnet device
       lists are given.
 
@@ -495,7 +495,7 @@ The long answer:
 --syslog-port nnn			: Specify port to be used for
 					  remote syslog
 
-      On Windows systems, LaBrea offers syslog support.
+      On Windows systems, NetHole offers syslog support.
 
       For Windows NT and up, log messages will be sent to the local
       Windows Application Event log if the "-l" parameter is
@@ -506,7 +506,7 @@ The long answer:
       work even on Windows 98 or ME systems.
 
       Finally, if the remote syslog doesn't open for some reason, then
-      LaBrea will fail over to the local application Event log.
+      NetHole will fail over to the local application Event log.
 
 
 --------------------------------
@@ -518,14 +518,14 @@ The long answer:
 					  info but DOES NOT RUN
 
       Test mode. If you're having trouble, try this first and see if
-      LaBrea is picking up the information on your adapter, netblock,
+      NetHole is picking up the information on your adapter, netblock,
       netmask, etc...  correctly.  This prints diagnostic information
       and then exits.
 
 --foreground (-d)			: Do NOT detach process.
 
-      Some people want to run LaBrea under the control of another
-      process. This keeps LaBrea from detaching and running as a
+      Some people want to run NetHole under the control of another
+      process. This keeps NetHole from detaching and running as a
       daemon.
 
       This is the default (only!) behaviour on Windows systems.
@@ -538,23 +538,23 @@ The long answer:
 
       ==> IMPORTANT ==> Be sure that you read the "Potential Issues"
       section in the INSTALL documentation before you actually use
-      LaBrea.
+      NetHole.
 
 --init-file filespec			: Specify alternative location
 					  for the configuration file
 
-      By default, LaBrea looks for the configuration file as follows:
+      By default, NetHole looks for the configuration file as follows:
       
       Unix systems	/usr/local/etc/labrea.conf
-      Windows systems	LaBrea.cfg in the current execution directory
+      Windows systems	NetHole.cfg in the current execution directory
 
       The "init-file" parameter can be a full filespec complete with
-      path information. LaBrea will look in the specified location for
+      path information. NetHole will look in the specified location for
       the configuration file.
 
 --debug nn				: Produce debugging output
 
-      If debugging is compiled into LaBrea by specifying:
+      If debugging is compiled into NetHole by specifying:
       
 	./configure enable-debugging
 
@@ -578,15 +578,15 @@ The long answer:
 
       First, some definitions.
 
-      * "Excluded" IPs are those that you DON'T want LaBrea to ever
+      * "Excluded" IPs are those that you DON'T want NetHole to ever
 	capture.
 
         Please note that you don't need to specify "active" IPs (ie
-	those with a live machine sitting on the address).  LaBrea
+	those with a live machine sitting on the address).  NetHole
 	won't capture an IP with a machine on it. This is only for
 	empty IPs that you DON'T want captured.
 
-      * "HardExcluded" IPs are those that you don't want LaBrea to
+      * "HardExcluded" IPs are those that you don't want NetHole to
         hard capture. This is only necessary with the -h option.
 
 ---------------------------
